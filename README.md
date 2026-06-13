@@ -1,9 +1,16 @@
-# CornCastle Anime / AniList Sync
+# CornCastle Anime
 
 A beautiful and feature-rich Android application that syncs with your AniList account. Track your anime watching progress, explore detailed anime information, and keep your favorites up-to-date!
 
 ## 📸 Screenshots
-You can find the latest screenshots and download the release APK from the **[Releases](../../releases)** section of this repository.
+
+|  |  |  |
+|--|--|--|
+| Home | Search | Airing schedule |
+| <img width="200" alt="home" src="https://github.com/user-attachments/assets/a1bef6a7-4525-4961-a21e-83245121ec72" /> | <img width="200" alt="serach" src="https://github.com/user-attachments/assets/38ade7e4-4105-4dec-b04f-1259327288c2" /> | <img width="200" alt="airing-ch" src="https://github.com/user-attachments/assets/46fa4c5a-bd11-4e3e-a2ce-b4938782a2ac" /> |
+| Details | Watch | Serach Filters |
+| <img width="200"  alt="details" src="https://github.com/user-attachments/assets/0f297a5d-23ad-4767-8174-ab30075dc106" /> | <img width="200"  alt="watch" src="https://github.com/user-attachments/assets/a01fc2c6-1289-4c1f-9d8e-9b4a18c05661" /> | <img width="200" alt="serach-flt" src="https://github.com/user-attachments/assets/8fc1a543-3224-4526-a27e-58fac665ba4f" /> |
+
 
 ## 🚀 Features
 - **AniList Integration:** Authenticate with your AniList account securely.
@@ -12,7 +19,15 @@ You can find the latest screenshots and download the release APK from the **[Rel
 - **Beautiful UI:** Built with Jetpack Compose featuring a modern, glassmorphic design and smooth animations.
 
 ## 📥 Download
-The latest stable APK is available in the **[Releases](../../releases)** page. Simply download the `.apk` file and install it on your Android device.
+
+Simply Click The Download APK Bwlow.
+
+[⬇️ Download APK](https://github.com/mjlanddev/CornCastle-Anime-APP/releases/latest)
+
+
+
+Or Manually go to the latest stable APK is available in the **[Releases](../../releases)** page. Simply download the `.apk` file and install it on your Android device.
+
 
 ## 🛠️ Setup & Development
 
@@ -36,3 +51,34 @@ To build the app yourself:
 
 ## 📄 License
 This project is licensed under the MIT License.
+
+
+# Disclaimer
+
+This project is an open-source anime streaming application created for educational and personal use purposes only.
+
+## Content Disclaimer
+
+* This application does **not host, store, upload, or distribute any copyrighted video content** on its own servers.
+* Anime metadata, titles, descriptions, ratings, and poster images are obtained from third-party sources such as AniList and remain the property of their respective owners.
+* Video content displayed through the application is provided by third-party services via embedded players (iframes) or external sources.
+* The developers of this project do not control, own, or operate any external video sources linked through the application.
+
+## Copyright
+
+All trademarks, logos, anime titles, artwork, posters, and related intellectual property belong to their respective copyright holders. Their inclusion within this application is for informational and indexing purposes only.
+
+## User Responsibility
+
+Users are solely responsible for how they use this software and for complying with applicable copyright laws and regulations in their jurisdiction.
+
+The developers, contributors, and maintainers of this project shall not be held liable for any misuse of the software, copyright infringement, or other unlawful activities carried out by users.
+
+## DMCA / Content Removal
+
+If you are a copyright owner and believe that any content accessible through this application infringes your rights, please contact the relevant content hosting provider directly. Since this application does not host the video content, removal requests should be directed to the source hosting the material.
+
+## No Warranty
+
+This software is provided "AS IS", without warranty of any kind, express or implied. The developers assume no responsibility for any damages, legal issues, or losses arising from the use of this project.
+
