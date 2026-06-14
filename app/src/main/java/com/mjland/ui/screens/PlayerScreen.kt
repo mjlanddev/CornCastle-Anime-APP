@@ -143,7 +143,7 @@ fun PlayerScreen(
     }
 
     
-    val embedUrl = "https://megaplay.buzz/stream/mal/$malId/$currentEp/$currentLang"
+    val embedUrl = "#/stream/mal/$malId/$currentEp/$currentLang"
 
     
     val htmlContent = remember(embedUrl, currentEp) {
@@ -373,7 +373,7 @@ fun PlayerScreen(
                                     }
                                 }
                             }, "AndroidBridge")
-                            loadDataWithBaseURL("https://megaplay.buzz", htmlContent, "text/html", "UTF-8", null)
+                            loadDataWithBaseURL("#", htmlContent, "text/html", "UTF-8", null)
                             tag = "frame_$embedUrl"
                         }
                     },
@@ -381,7 +381,7 @@ fun PlayerScreen(
                         val currentTag = webView.tag as? String
                         val expectedTag = "frame_$embedUrl"
                         if (currentTag != expectedTag) {
-                            webView.loadDataWithBaseURL("https://megaplay.buzz", htmlContent, "text/html", "UTF-8", null)
+                            webView.loadDataWithBaseURL("#", htmlContent, "text/html", "UTF-8", null)
                             webView.tag = expectedTag
                         }
                     }
