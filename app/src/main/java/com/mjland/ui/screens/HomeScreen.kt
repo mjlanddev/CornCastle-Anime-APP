@@ -38,20 +38,22 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import coil.ImageLoader
-import coil.compose.AsyncImage
+// import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import coil.request.SuccessResult
-import com.mjland.MainViewModel
+import com.mjland.viewmodel.MainViewModel
 import com.mjland.model.AnimeMedia
 import com.mjland.ui.theme.interFontFamily
 import com.mjland.ui.icons.*
+import com.mjland.ui.utils.shimmerEffect
+import com.mjland.ui.components.SmoothAsyncImage
 
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.LazyRow
 
 import com.mjland.viewmodel.MySpaceViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.mjland.ui.screens.ContinueWatchingCompactItem
+import com.mjland.ui.components.ContinueWatchingCompactItem
 
 @Composable
 fun HomeScreen(
@@ -440,7 +442,7 @@ fun HomeScreen(
                         icon = FluentuiSystemIconsArrowTrending,
                         animes = trending.drop(5),
                         onAnimeClick = onAnimeClick,
-                        onLoadMore = { viewModel.loadNextPage(com.mjland.AnimeSection.TRENDING) }
+                        onLoadMore = { viewModel.loadNextPage(com.mjland.viewmodel.AnimeSection.TRENDING) }
                     )
                 }
                 
@@ -451,7 +453,7 @@ fun HomeScreen(
                             icon = FluentuiSystemIconsHeartFilled,
                             animes = popular,
                             onAnimeClick = onAnimeClick,
-                            onLoadMore = { viewModel.loadNextPage(com.mjland.AnimeSection.POPULAR) }
+                            onLoadMore = { viewModel.loadNextPage(com.mjland.viewmodel.AnimeSection.POPULAR) }
                         )
                     }
                 }
@@ -463,7 +465,7 @@ fun HomeScreen(
                             icon = FluentuiSystemIconsStarFilled,
                             animes = topRated,
                             onAnimeClick = onAnimeClick,
-                            onLoadMore = { viewModel.loadNextPage(com.mjland.AnimeSection.TOP_RATED) }
+                            onLoadMore = { viewModel.loadNextPage(com.mjland.viewmodel.AnimeSection.TOP_RATED) }
                         )
                     }
                 }
@@ -475,7 +477,7 @@ fun HomeScreen(
                             icon = FluentuiSystemIconsTvFilled,
                             animes = currentlyAiring,
                             onAnimeClick = onAnimeClick,
-                            onLoadMore = { viewModel.loadNextPage(com.mjland.AnimeSection.CURRENTLY_AIRING) }
+                            onLoadMore = { viewModel.loadNextPage(com.mjland.viewmodel.AnimeSection.CURRENTLY_AIRING) }
                         )
                     }
                 }
@@ -487,7 +489,7 @@ fun HomeScreen(
                             icon = FluentuiSystemIconsTvFilled,
                             animes = finishedAiring,
                             onAnimeClick = onAnimeClick,
-                            onLoadMore = { viewModel.loadNextPage(com.mjland.AnimeSection.FINISHED_AIRING) }
+                            onLoadMore = { viewModel.loadNextPage(com.mjland.viewmodel.AnimeSection.FINISHED_AIRING) }
                         )
                     }
                 }
@@ -508,7 +510,7 @@ fun HomeScreen(
                             icon = FluentuiSystemIconsArrowTrending,
                             animes = upcoming,
                             onAnimeClick = onAnimeClick,
-                            onLoadMore = { viewModel.loadNextPage(com.mjland.AnimeSection.UPCOMING) }
+                            onLoadMore = { viewModel.loadNextPage(com.mjland.viewmodel.AnimeSection.UPCOMING) }
                         )
                     }
                 }
@@ -520,7 +522,7 @@ fun HomeScreen(
                             icon = FluentuiSystemIconsMoviesAndTvFilled,
                             animes = movies,
                             onAnimeClick = onAnimeClick,
-                            onLoadMore = { viewModel.loadNextPage(com.mjland.AnimeSection.MOVIES) }
+                            onLoadMore = { viewModel.loadNextPage(com.mjland.viewmodel.AnimeSection.MOVIES) }
                         )
                     }
                 }
@@ -532,7 +534,7 @@ fun HomeScreen(
                             icon = FluentuiSystemIconsHeartFilled,
                             animes = mostFavorited,
                             onAnimeClick = onAnimeClick,
-                            onLoadMore = { viewModel.loadNextPage(com.mjland.AnimeSection.MOST_FAVORITED) }
+                            onLoadMore = { viewModel.loadNextPage(com.mjland.viewmodel.AnimeSection.MOST_FAVORITED) }
                         )
                     }
                 }
@@ -553,7 +555,7 @@ fun HomeScreen(
                             icon = FluentuiSystemIconsStarFilled,
                             animes = actionAnime,
                             onAnimeClick = onAnimeClick,
-                            onLoadMore = { viewModel.loadNextPage(com.mjland.AnimeSection.ACTION) }
+                            onLoadMore = { viewModel.loadNextPage(com.mjland.viewmodel.AnimeSection.ACTION) }
                         )
                     }
                 }
@@ -565,7 +567,7 @@ fun HomeScreen(
                             icon = FluentuiSystemIconsHeartFilled,
                             animes = romanceAnime,
                             onAnimeClick = onAnimeClick,
-                            onLoadMore = { viewModel.loadNextPage(com.mjland.AnimeSection.ROMANCE) }
+                            onLoadMore = { viewModel.loadNextPage(com.mjland.viewmodel.AnimeSection.ROMANCE) }
                         )
                     }
                 }
@@ -577,7 +579,7 @@ fun HomeScreen(
                             icon = FluentuiSystemIconsArrowTrending,
                             animes = fantasyAnime,
                             onAnimeClick = onAnimeClick,
-                            onLoadMore = { viewModel.loadNextPage(com.mjland.AnimeSection.FANTASY) }
+                            onLoadMore = { viewModel.loadNextPage(com.mjland.viewmodel.AnimeSection.FANTASY) }
                         )
                     }
                 }
@@ -589,7 +591,7 @@ fun HomeScreen(
                             icon = FluentuiSystemIconsMoviesAndTvFilled,
                             animes = sciFiAnime,
                             onAnimeClick = onAnimeClick,
-                            onLoadMore = { viewModel.loadNextPage(com.mjland.AnimeSection.SCI_FI) }
+                            onLoadMore = { viewModel.loadNextPage(com.mjland.viewmodel.AnimeSection.SCI_FI) }
                         )
                     }
                 }
@@ -697,10 +699,8 @@ fun HeroGlassCard(anime: AnimeMedia, onPlayClick: () -> Unit) {
             )
     ) {
         
-        AsyncImage(
-            model = anime.bannerImage ?: anime.coverImage?.extraLarge,
-            contentDescription = null,
-            contentScale = ContentScale.Crop,
+        SmoothAsyncImage(
+            imageUrl = anime.bannerImage ?: anime.coverImage?.extraLarge,
             modifier = Modifier
                 .fillMaxSize()
                 .graphicsLayer { alpha = 0.35f }
@@ -836,10 +836,8 @@ fun HeroGlassCard(anime: AnimeMedia, onPlayClick: () -> Unit) {
             Spacer(modifier = Modifier.width(16.dp))
             
             
-            AsyncImage(
-                model = anime.coverImage?.large,
-                contentDescription = null,
-                contentScale = ContentScale.Crop,
+            SmoothAsyncImage(
+                imageUrl = anime.coverImage?.large,
                 modifier = Modifier
                     .width(115.dp) 
                     .fillMaxHeight()
@@ -1013,10 +1011,8 @@ fun AnimeCompactCard(anime: AnimeMedia, onClick: () -> Unit) {
                     shape = RoundedCornerShape(14.dp)
                 )
         ) {
-            AsyncImage(
-                model = anime.coverImage?.large,
-                contentDescription = anime.title?.english,
-                contentScale = ContentScale.Crop,
+            SmoothAsyncImage(
+                imageUrl = anime.coverImage?.large,
                 modifier = Modifier.fillMaxSize()
             )
             
@@ -1117,7 +1113,7 @@ fun HomeSkeletonView() {
                         .width(110.dp)
                         .height(28.dp)
                         .clip(RoundedCornerShape(8.dp))
-                        .background(Color.White.copy(alpha = 0.08f))
+                        .shimmerEffect()
                 )
                 
                 Box(
@@ -1125,7 +1121,7 @@ fun HomeSkeletonView() {
                         .width(48.dp)
                         .height(20.dp)
                         .clip(RoundedCornerShape(6.dp))
-                        .background(Color.White.copy(alpha = 0.05f))
+                        .shimmerEffect()
                 )
             }
             
@@ -1134,7 +1130,7 @@ fun HomeSkeletonView() {
                     .width(180.dp)
                     .height(14.dp)
                     .clip(RoundedCornerShape(4.dp))
-                    .background(Color.White.copy(alpha = 0.04f))
+                    .shimmerEffect()
             )
         }
 
@@ -1253,13 +1249,14 @@ fun HomeSkeletonView() {
                                         color = Color.White.copy(alpha = 0.06f),
                                         shape = RoundedCornerShape(14.dp)
                                     )
+                                    .shimmerEffect()
                             )
                             Box(
                                 modifier = Modifier
                                     .width(80.dp)
                                     .height(12.dp)
                                     .clip(RoundedCornerShape(3.dp))
-                                    .background(Color.White.copy(alpha = 0.05f))
+                                    .shimmerEffect()
                             )
                             Box(
                                 modifier = Modifier
@@ -1329,7 +1326,7 @@ fun PopularGenresRow(
                         )
                 ) {
                     if (!imageUrl.isNullOrEmpty()) {
-                        AsyncImage(
+                        SmoothAsyncImage(
                             model = imageUrl,
                             contentDescription = genre,
                             contentScale = ContentScale.Crop,
@@ -1421,7 +1418,7 @@ fun PopularTagsRow(
                         )
                 ) {
                     if (!imageUrl.isNullOrEmpty()) {
-                        AsyncImage(
+                        SmoothAsyncImage(
                             model = imageUrl,
                             contentDescription = tag,
                             contentScale = ContentScale.Crop,

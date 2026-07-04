@@ -45,7 +45,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
+import com.mjland.ui.components.SmoothAsyncImage
 import com.mjland.model.AnimeMedia
 import com.mjland.viewmodel.SearchViewModel
 import dev.chrisbanes.haze.HazeState
@@ -258,6 +258,14 @@ fun SearchScreen(
             viewModel.searchAnime(loadMore = true)
         }
     }
+    
+    LaunchedEffect(
+        searchQuery, selectedFormat, selectedStatus, selectedCountry, selectedSeason,
+        fromYear, toYear, episodesFrom, episodesTo, durationFrom, durationTo,
+        selectedGenres, selectedTags, selectedSort
+    ) {
+        gridState.scrollToItem(0)
+    }
 
     Box(
         modifier = Modifier
@@ -289,35 +297,13 @@ fun SearchScreen(
                                 .padding(6.dp),
                             verticalArrangement = Arrangement.spacedBy(6.dp)
                         ) {
-                            Box(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .aspectRatio(112f / 155f)
-                                    .clip(RoundedCornerShape(14.dp))
-                                    .background(Color.White.copy(alpha = 0.03f))
-                                    .border(
-                                        width = 1.dp,
-                                        color = Color.White.copy(alpha = 0.06f),
-                                        shape = RoundedCornerShape(14.dp)
-                                    )
+                            com.mjland.ui.components.PosterSkeleton(
+                                modifier = Modifier.fillMaxWidth().aspectRatio(112f / 155f)
                             )
-                            Box(
-                                modifier = Modifier
-                                    .width(80.dp)
-                                    .height(12.dp)
-                                    .clip(RoundedCornerShape(3.dp))
-                                    .background(Color.White.copy(alpha = 0.05f))
-                            )
-                            Box(
-                                modifier = Modifier
-                                    .width(50.dp)
-                                    .height(10.dp)
-                                    .clip(RoundedCornerShape(3.dp))
-                                    .background(Color.White.copy(alpha = 0.04f))
-                            )
+                            com.mjland.ui.components.TextSkeleton(width = 80, height = 12)
+                            com.mjland.ui.components.TextSkeleton(width = 50, height = 10)
                         }
                     } else {
-                        
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -331,39 +317,17 @@ fun SearchScreen(
                                 .padding(8.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Box(
-                                modifier = Modifier
-                                    .width(70.dp)
-                                    .aspectRatio(0.7f)
-                                    .clip(RoundedCornerShape(8.dp))
-                                    .background(Color.White.copy(alpha = 0.03f))
+                            com.mjland.ui.components.PosterSkeleton(
+                                modifier = Modifier.width(70.dp).aspectRatio(0.7f)
                             )
                             Spacer(modifier = Modifier.width(12.dp))
                             Column(
                                 modifier = Modifier.weight(1f),
                                 verticalArrangement = Arrangement.spacedBy(6.dp)
                             ) {
-                                Box(
-                                    modifier = Modifier
-                                        .width(140.dp)
-                                        .height(14.dp)
-                                        .clip(RoundedCornerShape(3.dp))
-                                        .background(Color.White.copy(alpha = 0.05f))
-                                )
-                                Box(
-                                    modifier = Modifier
-                                        .width(80.dp)
-                                        .height(10.dp)
-                                        .clip(RoundedCornerShape(3.dp))
-                                        .background(Color.White.copy(alpha = 0.04f))
-                                )
-                                Box(
-                                    modifier = Modifier
-                                        .fillMaxWidth(0.75f)
-                                        .height(10.dp)
-                                        .clip(RoundedCornerShape(3.dp))
-                                        .background(Color.White.copy(alpha = 0.03f))
-                                )
+                                com.mjland.ui.components.TextSkeleton(width = 140, height = 14)
+                                com.mjland.ui.components.TextSkeleton(width = 80, height = 10)
+                                com.mjland.ui.components.TextSkeleton(width = 120, height = 10)
                             }
                         }
                     }
@@ -1267,7 +1231,7 @@ fun SearchAnimeCard(anime: AnimeMedia, onClick: () -> Unit) {
             .clickable(onClick = onClick)
     ) {
         Box {
-            AsyncImage(
+            SmoothAsyncImage(
                 model = anime.coverImage?.large,
                 contentDescription = anime.title?.english ?: anime.title?.romaji,
                 contentScale = ContentScale.Crop,
@@ -1370,7 +1334,7 @@ fun SearchAnimeListRow(anime: AnimeMedia, onClick: () -> Unit) {
     ) {
         
         if (!anime.bannerImage.isNullOrEmpty()) {
-            AsyncImage(
+            SmoothAsyncImage(
                 model = anime.bannerImage,
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
@@ -1406,7 +1370,7 @@ fun SearchAnimeListRow(anime: AnimeMedia, onClick: () -> Unit) {
                     .clip(RoundedCornerShape(8.dp))
                     .background(Color(0xFF141416))
             ) {
-                AsyncImage(
+                SmoothAsyncImage(
                     model = anime.coverImage?.large ?: anime.coverImage?.extraLarge,
                     contentDescription = anime.title?.english ?: anime.title?.romaji,
                     contentScale = ContentScale.Crop,

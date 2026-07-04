@@ -1,6 +1,7 @@
 package com.mjland.ui.screens
 
 import androidx.compose.animation.core.*
+import androidx.compose.animation.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.border
@@ -25,7 +26,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.mjland.MainViewModel
+import com.mjland.viewmodel.MainViewModel
 import com.mjland.model.AnimeMedia
 import com.mjland.ui.icons.*
 import com.mjland.viewmodel.ScheduleViewModel
@@ -82,10 +83,10 @@ fun MainScreen(
                 navController = navController,
                 startDestination = "home",
                 modifier = Modifier.fillMaxSize(),
-                enterTransition = { fadeIn(animationSpec = tween(400)) },
-                exitTransition = { fadeOut(animationSpec = tween(400)) },
-                popEnterTransition = { fadeIn(animationSpec = tween(400)) },
-                popExitTransition = { fadeOut(animationSpec = tween(400)) }
+                enterTransition = { slideInHorizontally(initialOffsetX = { 100 }, animationSpec = tween(300, easing = LinearOutSlowInEasing)) + fadeIn(animationSpec = tween(300)) },
+                exitTransition = { slideOutHorizontally(targetOffsetX = { -100 }, animationSpec = tween(300, easing = LinearOutSlowInEasing)) + fadeOut(animationSpec = tween(300)) },
+                popEnterTransition = { slideInHorizontally(initialOffsetX = { -100 }, animationSpec = tween(300, easing = LinearOutSlowInEasing)) + fadeIn(animationSpec = tween(300)) },
+                popExitTransition = { slideOutHorizontally(targetOffsetX = { 100 }, animationSpec = tween(300, easing = LinearOutSlowInEasing)) + fadeOut(animationSpec = tween(300)) }
             ) {
                 composable("home") {
                     HomeScreen(
@@ -93,23 +94,11 @@ fun MainScreen(
                         onAnimeClick = onAnimeClick,
                         onGenreClick = { genre ->
                             searchViewModel.selectSingleGenre(genre)
-                            navController.navigate("search") {
-                                popUpTo(navController.graph.findStartDestination().id) {
-                                    saveState = true
-                                }
-                                launchSingleTop = true
-                                restoreState = true
-                            }
+                            mainViewModel.setSelectedTab("search")
                         },
                         onTagClick = { tag ->
                             searchViewModel.selectSingleTag(tag)
-                            navController.navigate("search") {
-                                popUpTo(navController.graph.findStartDestination().id) {
-                                    saveState = true
-                                }
-                                launchSingleTop = true
-                                restoreState = true
-                            }
+                            mainViewModel.setSelectedTab("search")
                         }
                     )
                 }

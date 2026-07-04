@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.animation.*
+import androidx.compose.animation.core.*
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -24,6 +26,7 @@ import com.mjland.ui.screens.PlayerScreen
 import com.mjland.ui.theme.CornCastleAnimeTheme
 import com.mjland.viewmodel.ScheduleViewModel
 import com.mjland.viewmodel.SearchViewModel
+import com.mjland.viewmodel.MainViewModel
 
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
@@ -59,16 +62,16 @@ class MainActivity : ComponentActivity() {
                 navController = rootNavController,
                 startDestination = "splash",
                 enterTransition = {
-                    fadeIn(animationSpec = tween(300)) + scaleIn(initialScale = 0.98f, animationSpec = tween(300))
+                    slideInHorizontally(initialOffsetX = { 200 }, animationSpec = tween(400, easing = LinearOutSlowInEasing)) + fadeIn(animationSpec = tween(400))
                 },
                 exitTransition = {
-                    fadeOut(animationSpec = tween(300))
+                    slideOutHorizontally(targetOffsetX = { -200 }, animationSpec = tween(400, easing = LinearOutSlowInEasing)) + fadeOut(animationSpec = tween(400))
                 },
                 popEnterTransition = {
-                    fadeIn(animationSpec = tween(300))
+                    slideInHorizontally(initialOffsetX = { -200 }, animationSpec = tween(400, easing = LinearOutSlowInEasing)) + fadeIn(animationSpec = tween(400))
                 },
                 popExitTransition = {
-                    fadeOut(animationSpec = tween(300)) + scaleOut(targetScale = 0.98f, animationSpec = tween(300))
+                    slideOutHorizontally(targetOffsetX = { 200 }, animationSpec = tween(400, easing = LinearOutSlowInEasing)) + fadeOut(animationSpec = tween(400))
                 }
             ) {
                 composable("splash") {

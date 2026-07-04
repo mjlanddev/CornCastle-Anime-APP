@@ -126,7 +126,8 @@ class PlayerViewModel : ViewModel() {
                 _animeDetails.value = response.data.Media
                 _error.value = null
             } catch (e: Exception) {
-                Log.e("PlayerViewModel", "Error fetching details: ${e.message}", e)
+                if (e is kotlinx.coroutines.CancellationException) throw e
+                Log.e("PlayerViewModel", "Error fetching episodes: ${e.message}", e)
                 val isOffline = e is java.io.IOException || e is java.net.UnknownHostException
                 _error.value = if (isOffline) "OFFLINE" else (e.localizedMessage ?: e.message ?: "Unknown error")
             } finally {
@@ -223,6 +224,7 @@ class PlayerViewModel : ViewModel() {
                     )
                 }
             } catch (e: Exception) {
+                if (e is kotlinx.coroutines.CancellationException) throw e
                 Log.e("PlayerViewModel", "Failed to save watch progress", e)
             }
         }

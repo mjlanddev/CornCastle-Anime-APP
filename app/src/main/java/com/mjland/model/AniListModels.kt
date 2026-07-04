@@ -1,6 +1,7 @@
 package com.mjland.model
 
 import com.squareup.moshi.JsonClass
+import androidx.compose.runtime.Immutable
 
 @JsonClass(generateAdapter = true)
 data class GraphQLRequest(
@@ -16,6 +17,18 @@ data class AniListResponse(
 @JsonClass(generateAdapter = true)
 data class AniListData(
     val Page: AniListPage?,
+    val trending: AniListPage? = null,
+    val popular: AniListPage? = null,
+    val topRated: AniListPage? = null,
+    val currentlyAiring: AniListPage? = null,
+    val finishedAiring: AniListPage? = null,
+    val upcoming: AniListPage? = null,
+    val movies: AniListPage? = null,
+    val action: AniListPage? = null,
+    val romance: AniListPage? = null,
+    val fantasy: AniListPage? = null,
+    val sciFi: AniListPage? = null,
+    val mostFavorited: AniListPage? = null,
     val Media: AnimeDetails?,
     val airingSchedules: List<AiringSchedule>? = null,
     val GenreCollection: List<String>? = null,
@@ -32,6 +45,7 @@ data class AniListPage(
     val airingSchedules: List<AiringSchedule>? = null
 )
 
+@Immutable
 @JsonClass(generateAdapter = true)
 data class AiringSchedule(
     val id: Int,
@@ -40,6 +54,7 @@ data class AiringSchedule(
     val media: AnimeMedia?
 )
 
+@Immutable
 @JsonClass(generateAdapter = true)
 data class AnimeMedia(
     val id: Int,
@@ -57,6 +72,7 @@ data class AnimeMedia(
     val seasonYear: Int?
 )
 
+@Immutable
 @JsonClass(generateAdapter = true)
 data class AnimeDetails(
     val id: Int,

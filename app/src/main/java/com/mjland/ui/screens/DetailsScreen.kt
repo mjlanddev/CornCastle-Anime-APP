@@ -36,7 +36,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import coil.compose.AsyncImage
+// import coil.compose.AsyncImage
 import coil.imageLoader
 import coil.request.ImageRequest
 import coil.request.SuccessResult
@@ -48,6 +48,8 @@ import com.mjland.model.CharacterEdge
 import com.mjland.viewmodel.DetailsViewModel
 import com.mjland.ui.theme.interFontFamily
 import com.mjland.ui.icons.*
+import com.mjland.ui.utils.shimmerEffect
+import com.mjland.ui.components.SmoothAsyncImage
 import dev.chrisbanes.haze.HazeState
 import dev.chrisbanes.haze.HazeStyle
 import dev.chrisbanes.haze.haze
@@ -157,10 +159,8 @@ fun DetailsScreen(
                             .fillMaxWidth()
                             .height(300.dp) 
                     ) {
-                        AsyncImage(
-                            model = anime.bannerImage ?: anime.coverImage?.extraLarge,
-                            contentDescription = null,
-                            contentScale = ContentScale.Crop,
+                        SmoothAsyncImage(
+                            imageUrl = anime.bannerImage ?: anime.coverImage?.extraLarge,
                             modifier = Modifier.fillMaxSize()
                         )
                         
@@ -312,16 +312,13 @@ fun CinematicHeroSection(
             horizontalArrangement = Arrangement.spacedBy(20.dp)
         ) {
             
-            AsyncImage(
-                model = anime.coverImage?.large ?: anime.coverImage?.extraLarge,
-                contentDescription = title,
-                contentScale = ContentScale.Crop,
+            SmoothAsyncImage(
+                imageUrl = anime.coverImage?.large ?: anime.coverImage?.extraLarge,
                 modifier = Modifier
                     .width(110.dp) 
                     .aspectRatio(2f/3f)
                     .clip(RoundedCornerShape(16.dp))
                     .border(1.dp, Color.White.copy(alpha = 0.1f), RoundedCornerShape(16.dp))
-                    .background(Color.White.copy(alpha = 0.05f))
             )
 
             Column(
@@ -661,7 +658,7 @@ fun ModernTrailerSection(trailer: com.mjland.model.Trailer) {
                 .height(210.dp)
                 .padding(horizontal = 24.dp)
                 .clip(RoundedCornerShape(20.dp))
-                .background(Color.White.copy(alpha = 0.05f))
+                .shimmerEffect()
                 .border(1.dp, Color.White.copy(alpha = 0.1f), RoundedCornerShape(20.dp))
         ) {
             if (isPlaying) {
@@ -680,7 +677,7 @@ fun ModernTrailerSection(trailer: com.mjland.model.Trailer) {
                 )
             } else {
                 val thumbnailUrl = trailer.thumbnail ?: "https://img.youtube.com/vi/${trailer.id}/maxresdefault.jpg"
-                AsyncImage(
+                SmoothAsyncImage(
                     model = thumbnailUrl,
                     contentDescription = null,
                     contentScale = ContentScale.Crop,
@@ -729,17 +726,14 @@ fun ModernHorizontalSection(title: String, items: List<AnimeMedia>, onClick: (An
             contentPadding = PaddingValues(horizontal = 24.dp),
             horizontalArrangement = Arrangement.spacedBy(14.dp)
         ) {
-            items(items) { anime ->
+            items(items, key = { it.id }) { anime ->
                 Column(modifier = Modifier.width(110.dp).clickable { onClick(anime) }) {
-                   AsyncImage(
-                        model = anime.coverImage?.large,
-                        contentDescription = null,
-                        contentScale = ContentScale.Crop,
+                    SmoothAsyncImage(
+                        imageUrl = anime.coverImage?.large,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(160.dp)
-                            .clip(RoundedCornerShape(12.dp))
-                            .background(Color.White.copy(alpha = 0.05f))
+                            .height(160.dp),
+                        shape = RoundedCornerShape(12.dp)
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
@@ -784,7 +778,7 @@ fun ModernCharactersSection(characters: List<CharacterEdge>) {
                             modifier = Modifier
                                 .size(90.dp)
                                 .clip(RoundedCornerShape(12.dp))
-                                .background(Color.White.copy(alpha = 0.05f))
+                                .shimmerEffect()
                                 .border(1.dp, Color.White.copy(alpha = 0.1f), RoundedCornerShape(12.dp)),
                             contentAlignment = androidx.compose.ui.Alignment.Center
                         ) {
@@ -796,14 +790,14 @@ fun ModernCharactersSection(characters: List<CharacterEdge>) {
                             )
                         }
                     } else {
-                        AsyncImage(
+                        SmoothAsyncImage(
                             model = imageUrl,
                             contentDescription = null,
                             contentScale = ContentScale.Crop,
                             modifier = Modifier
                                 .size(90.dp)
                                 .clip(RoundedCornerShape(12.dp))
-                                .background(Color.White.copy(alpha = 0.05f))
+                                .shimmerEffect()
                                 .border(1.dp, Color.White.copy(alpha = 0.1f), RoundedCornerShape(12.dp))
                         )
                     }
@@ -855,7 +849,7 @@ fun ModernStaffSection(staff: List<com.mjland.model.StaffEdge>) {
                             modifier = Modifier
                                 .size(90.dp)
                                 .clip(RoundedCornerShape(12.dp))
-                                .background(Color.White.copy(alpha = 0.05f))
+                                .shimmerEffect()
                                 .border(1.dp, Color.White.copy(alpha = 0.1f), RoundedCornerShape(12.dp)),
                             contentAlignment = androidx.compose.ui.Alignment.Center
                         ) {
@@ -867,14 +861,14 @@ fun ModernStaffSection(staff: List<com.mjland.model.StaffEdge>) {
                             )
                         }
                     } else {
-                        AsyncImage(
+                        SmoothAsyncImage(
                             model = imageUrl,
                             contentDescription = null,
                             contentScale = ContentScale.Crop,
                             modifier = Modifier
                                 .size(90.dp)
                                 .clip(RoundedCornerShape(12.dp))
-                                .background(Color.White.copy(alpha = 0.05f))
+                                .shimmerEffect()
                                 .border(1.dp, Color.White.copy(alpha = 0.1f), RoundedCornerShape(12.dp))
                         )
                     }
@@ -939,7 +933,7 @@ fun DetailsSkeletonView(hazeState: HazeState) {
                             .width(88.dp)
                             .height(130.dp)
                             .clip(RoundedCornerShape(12.dp))
-                            .background(Color.White.copy(alpha = 0.05f))
+                            .shimmerEffect()
                             .border(1.dp, Color.White.copy(alpha = 0.08f), RoundedCornerShape(12.dp))
                     )
 
@@ -954,14 +948,14 @@ fun DetailsSkeletonView(hazeState: HazeState) {
                                     .width(45.dp)
                                     .height(18.dp)
                                     .clip(RoundedCornerShape(6.dp))
-                                    .background(Color.White.copy(alpha = 0.08f))
+                                    .shimmerEffect()
                             )
                             Box(
                                 modifier = Modifier
                                     .width(60.dp)
                                     .height(18.dp)
                                     .clip(RoundedCornerShape(6.dp))
-                                    .background(Color.White.copy(alpha = 0.06f))
+                                    .shimmerEffect()
                             )
                         }
                         Box(
@@ -969,14 +963,14 @@ fun DetailsSkeletonView(hazeState: HazeState) {
                                 .width(180.dp)
                                 .height(24.dp)
                                 .clip(RoundedCornerShape(6.dp))
-                                .background(Color.White.copy(alpha = 0.08f))
+                                .shimmerEffect()
                         )
                         Box(
                             modifier = Modifier
                                 .width(120.dp)
                                 .height(16.dp)
                                 .clip(RoundedCornerShape(4.dp))
-                                .background(Color.White.copy(alpha = 0.04f))
+                                .shimmerEffect()
                         )
                     }
                 }
@@ -991,19 +985,19 @@ fun DetailsSkeletonView(hazeState: HazeState) {
                             .weight(1f)
                             .height(44.dp)
                             .clip(RoundedCornerShape(10.dp))
-                            .background(Color.White.copy(alpha = 0.12f))
+                            .shimmerEffect()
                     )
                     Box(
                         modifier = Modifier
                             .size(44.dp)
                             .clip(RoundedCornerShape(10.dp))
-                            .background(Color.White.copy(alpha = 0.06f))
+                            .shimmerEffect()
                     )
                     Box(
                         modifier = Modifier
                             .size(44.dp)
                             .clip(RoundedCornerShape(10.dp))
-                            .background(Color.White.copy(alpha = 0.06f))
+                            .shimmerEffect()
                     )
                 }
             }

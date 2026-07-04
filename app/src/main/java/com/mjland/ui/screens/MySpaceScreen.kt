@@ -30,10 +30,12 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import coil.compose.AsyncImage
+import com.mjland.ui.components.SmoothAsyncImage
 import com.mjland.database.BookmarkEntity
 import com.mjland.database.ContinueWatchingEntity
 import com.mjland.model.AnimeMedia
+import com.mjland.ui.components.ContinueWatchingCompactItem
+import com.mjland.ui.components.BookmarkListItem
 import com.mjland.ui.icons.*
 import com.mjland.viewmodel.MySpaceViewModel
 
@@ -219,7 +221,7 @@ fun MySpaceScreen(
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.spacedBy(12.dp)
                         ) {
-                            AsyncImage(
+                            SmoothAsyncImage(
                                 model = viewerProfile?.avatar?.large,
                                 contentDescription = "Avatar",
                                 modifier = Modifier
@@ -533,321 +535,39 @@ fun MySpaceScreen(
                                     )
                                 }
                             }
-                        } else {
-                            Column(
-                                modifier = Modifier.padding(horizontal = 20.dp),
-                                verticalArrangement = Arrangement.spacedBy(12.dp)
-                            ) {
-                                bookmarks.forEach { bookmark ->
-                                    BookmarkListItem(
-                                        bookmark = bookmark,
-                                        onClick = {
-                                            val animeMedia = AnimeMedia(
-                                                id = bookmark.animeId,
-                                                title = com.mjland.model.MediaTitle(
-                                                    romaji = bookmark.title,
-                                                    english = bookmark.title,
-                                                    native = bookmark.title
-                                                ),
-                                                coverImage = com.mjland.model.CoverImage(
-                                                    extraLarge = bookmark.coverImage,
-                                                    large = bookmark.coverImage
-                                                ),
-                                                bannerImage = bookmark.bannerImage,
-                                                format = bookmark.format,
-                                                episodes = bookmark.episodes,
-                                                status = null,
-                                                description = null,
-                                                averageScore = bookmark.averageScore,
-                                                genres = bookmark.genres?.split(",")?.filter { it.isNotBlank() },
-                                                seasonYear = null
-                                            )
-                                            onAnimeClick(animeMedia)
-                                        }
-                                    )
-                                }
-                            }
                         }
                     }
                 }
-            }
-        }
-    }
 
-@Composable
-fun ContinueWatchingCompactItem(
-    watch: ContinueWatchingEntity,
-    onClick: () -> Unit
-) {
-    Column(
-        modifier = Modifier
-            .width(180.dp)
-            .clickable(onClick = onClick)
-    ) {
-        Box(
-            modifier = Modifier
-                .width(180.dp)
-                .height(102.dp)
-                .clip(RoundedCornerShape(8.dp))
-                .background(Color.White.copy(alpha = 0.05f))
-        ) {
-            
-            if (!watch.bannerImage.isNullOrEmpty()) {
-                AsyncImage(
-                    model = watch.bannerImage,
-                    contentDescription = null,
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .graphicsLayer(alpha = 0.25f)
-                )
-            }
-
-            AsyncImage(
-                model = watch.coverImage,
-                contentDescription = watch.title,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier.fillMaxSize()
-            )
-
-            
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(
-                        Brush.verticalGradient(
-                            listOf(Color.Transparent, Color.Black.copy(alpha = 0.7f))
-                        )
-                    )
-            )
-
-            
-            val lastProgress = watch.lastProgress ?: 0f
-            if (lastProgress > 0f) {
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(2.dp)
-                        .align(Alignment.BottomStart)
-                        .background(Color.White.copy(alpha = 0.05f))
-                ) {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxHeight()
-                            .fillMaxWidth(lastProgress)
-                            .background(Color(0xFFE50914)) 
-                    )
-                }
-            }
-        }
-
-        Spacer(modifier = Modifier.height(6.dp))
-
-        Text(
-            text = watch.title,
-            color = Color.White,
-            style = MaterialTheme.typography.titleSmall.copy(
-                fontWeight = FontWeight.Medium,
-                fontSize = 12.sp,
-                lineHeight = 14.sp
-            ),
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
-            modifier = Modifier.padding(horizontal = 2.dp)
-        )
-
-        val subtitleText = remember(watch) {
-            val formatStr = if (watch.format == "MOVIE" || watch.format == "Movie") "Movie" else (watch.format ?: "TV")
-            if (watch.format == "MOVIE" || watch.format == "Movie") {
-                formatStr
-            } else if (watch.episodes != null) {
-                
-                
-                "EP ${watch.episodes} • $formatStr"
-            } else {
-                formatStr
-            }
-        }
-        Text(
-            text = subtitleText,
-            color = Color.White.copy(alpha = 0.4f),
-            style = MaterialTheme.typography.labelSmall.copy(
-                fontSize = 10.sp
-            ),
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
-            modifier = Modifier.padding(horizontal = 2.dp)
-        )
-    }
-}
-
-@Composable
-fun BookmarkListItem(
-    bookmark: BookmarkEntity,
-    onClick: () -> Unit
-) {
-    val scoreText = remember(bookmark) {
-        if (bookmark.averageScore != null && bookmark.averageScore > 0) {
-            val scoreDouble = bookmark.averageScore / 10.0
-            String.format("%.1f", scoreDouble)
-        } else null
-    }
-
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(12.dp))
-            .clickable(onClick = onClick)
-            .background(Color(0xFF0C0C10))
-            .border(
-                width = 0.5.dp,
-                color = Color.White.copy(alpha = 0.08f),
-                shape = RoundedCornerShape(12.dp)
-            )
-    ) {
-        
-        if (!bookmark.bannerImage.isNullOrEmpty()) {
-            AsyncImage(
-                model = bookmark.bannerImage,
-                contentDescription = null,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .matchParentSize()
-                    .graphicsLayer(alpha = 0.15f)
-            )
-            
-            Box(
-                modifier = Modifier
-                    .matchParentSize()
-                    .background(
-                        Brush.horizontalGradient(
-                            colors = listOf(
-                                Color.Black.copy(alpha = 0.94f),
-                                Color.Black.copy(alpha = 0.5f)
-                            )
-                        )
-                    )
-            )
-        }
-
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Box(
-                modifier = Modifier
-                    .width(72.dp)
-                    .aspectRatio(0.7f)
-                    .clip(RoundedCornerShape(8.dp))
-                    .background(Color(0xFF141416))
-            ) {
-                AsyncImage(
-                    model = bookmark.coverImage,
-                    contentDescription = bookmark.title,
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier.fillMaxSize()
-                )
-
-                if (scoreText != null) {
-                    val scoreValue = bookmark.averageScore ?: 0
-                    val scoreColor = if (scoreValue > 75) Color(0xFF4CAF50) else if (scoreValue > 50) Color(0xFFFFC107) else Color.White
-                    Box(
-                        modifier = Modifier
-                            .align(Alignment.BottomStart)
-                            .padding(4.dp)
-                            .clip(RoundedCornerShape(4.dp))
-                            .background(Color.Black.copy(alpha = 0.8f))
-                            .padding(horizontal = 4.dp, vertical = 1.dp)
-                    ) {
-                        Row(verticalAlignment = Alignment.CenterVertically) {
-                            Icon(
-                                imageVector = FluentuiSystemIconsStarFilled,
-                                contentDescription = "Score",
-                                tint = scoreColor,
-                                modifier = Modifier.size(8.dp)
-                            )
-                            Spacer(modifier = Modifier.width(2.dp))
-                            Text(
-                                text = "${bookmark.averageScore}%",
-                                color = Color.White,
-                                style = MaterialTheme.typography.labelSmall.copy(fontSize = 8.sp, fontWeight = FontWeight.SemiBold)
-                            )
-                        }
-                    }
-                }
-            }
-
-            Spacer(modifier = Modifier.width(12.dp))
-
-            Column(
-                modifier = Modifier.weight(1f)
-            ) {
-                Text(
-                    text = bookmark.title,
-                    color = Color.White,
-                    style = MaterialTheme.typography.titleSmall.copy(
-                        fontWeight = FontWeight.Medium,
-                        fontSize = 13.sp,
-                        letterSpacing = (-0.1).sp
-                    ),
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
-                )
-
-                Spacer(modifier = Modifier.height(2.dp))
-
-                val detailsParts = listOfNotNull(
-                    when (bookmark.format) {
-                        "MOVIE" -> "Movie"
-                        "TV" -> "TV"
-                        "TV_SHORT" -> "Short"
-                        "OVA" -> "OVA"
-                        "ONA" -> "ONA"
-                        "SPECIAL" -> "Special"
-                        "MUSIC" -> "Music"
-                        else -> bookmark.format
-                    },
-                    if (bookmark.format != "MOVIE" && bookmark.format != "Movie") bookmark.episodes?.let { "$it Eps" } else null
-                )
-                val formatText = detailsParts.joinToString(" • ")
-                
-                if (formatText.isNotEmpty()) {
-                    Text(
-                        text = formatText,
-                        color = Color.White.copy(alpha = 0.6f),
-                        style = MaterialTheme.typography.labelSmall.copy(fontSize = 11.sp),
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                }
-
-                
-                val genreList = remember(bookmark.genres) {
-                    bookmark.genres?.split(",")?.filter { it.isNotBlank() } ?: emptyList()
-                }
-                if (genreList.isNotEmpty()) {
-                    Spacer(modifier = Modifier.height(6.dp))
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(4.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        genreList.take(3).forEach { genre ->
-                            Box(
-                                modifier = Modifier
-                                    .clip(RoundedCornerShape(6.dp))
-                                    .background(Color.White.copy(alpha = 0.05f))
-                                    .border(0.5.dp, Color.White.copy(alpha = 0.06f), RoundedCornerShape(6.dp))
-                                    .padding(horizontal = 6.dp, vertical = 2.dp)
-                            ) {
-                                Text(
-                                    text = genre,
-                                    color = Color.White.copy(alpha = 0.7f),
-                                    style = MaterialTheme.typography.labelSmall.copy(fontSize = 9.sp)
+            if (bookmarks.isNotEmpty()) {
+                items(bookmarks, key = { it.animeId }) { bookmark ->
+                    Box(modifier = Modifier.padding(horizontal = 20.dp)) {
+                        BookmarkListItem(
+                            bookmark = bookmark,
+                            onClick = {
+                                val animeMedia = AnimeMedia(
+                                    id = bookmark.animeId,
+                                    title = com.mjland.model.MediaTitle(
+                                        romaji = bookmark.title,
+                                        english = bookmark.title,
+                                        native = bookmark.title
+                                    ),
+                                    coverImage = com.mjland.model.CoverImage(
+                                        extraLarge = bookmark.coverImage,
+                                        large = bookmark.coverImage
+                                    ),
+                                    bannerImage = bookmark.bannerImage,
+                                    format = bookmark.format,
+                                    episodes = bookmark.episodes,
+                                    status = null,
+                                    description = null,
+                                    averageScore = bookmark.averageScore,
+                                    genres = bookmark.genres?.split(",")?.filter { it.isNotBlank() },
+                                    seasonYear = null
                                 )
+                                onAnimeClick(animeMedia)
                             }
-                        }
+                        )
                     }
                 }
             }

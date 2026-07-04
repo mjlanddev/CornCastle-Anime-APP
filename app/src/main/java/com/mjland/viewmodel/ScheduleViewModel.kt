@@ -65,40 +65,24 @@ class ScheduleViewModel : ViewModel() {
                 """.trimIndent()
                 
                 val allSchedules = mutableListOf<AiringSchedule>()
-                var firstError: Exception? = null
-
-                kotlinx.coroutines.supervisorScope {
-                    val jobs = (1..6).map { page ->
-                        launch {
-                            val variables = mapOf(
-                                "airingAt_greater" to startOfToday.toInt(),
-                                "page" to page
-                            )
-                            val request = GraphQLRequest(query, variables)
-                            try {
-                                val response = RetrofitClient.apiService.fetchAnime(request)
-                                val pageData = response.data.Page
-                                synchronized(allSchedules) {
-                                    allSchedules.addAll(pageData?.airingSchedules ?: emptyList())
-                                }
-                            } catch (e: Exception) {
-                                synchronized(this@ScheduleViewModel) {
-                                    if (firstError == null) firstError = e
-                                }
-                            }
-                        }
-                    }
-                    jobs.forEach { it.join() }
-                }
-
                 
+                val variables = mapOf(
+                    "airingAt_greater" to startOfToday.toInt(),
+                    "page" to 1
+                )
+                val request = GraphQLRequest(query, variables)
+                val response = RetrofitClient.apiService.fetchAnime(request)
+                val pageData = response.data.Page
+                
+                allSchedules.addAll(pageData?.airingSchedules ?: emptyList())
                 allSchedules.sortBy { it.airingAt ?: Long.MAX_VALUE }
                 
-                if (allSchedules.isNotEmpty() || firstError == null) {
+                if (allSchedules.isNotEmpty()) {
                     _schedules.value = allSchedules
                     _error.value = null 
                 } else {
-                    throw firstError!!
+                    _schedules.value = emptyList()
+                    _error.value = null
                 }
             } catch (e: Exception) {
                 Log.e("ScheduleViewModel", "Schedule error", e)
