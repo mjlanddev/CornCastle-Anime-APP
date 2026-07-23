@@ -7,9 +7,9 @@ A beautiful and feature-rich Android application that syncs with your AniList ac
 |  |  |  |
 |--|--|--|
 | Home | Search | Airing schedule |
-| <img width="200" alt="home" src="https://github.com/user-attachments/assets/a1bef6a7-4525-4961-a21e-83245121ec72" /> | <img width="200" alt="serach" src="https://github.com/user-attachments/assets/38ade7e4-4105-4dec-b04f-1259327288c2" /> | <img width="200" alt="airing-ch" src="https://github.com/user-attachments/assets/46fa4c5a-bd11-4e3e-a2ce-b4938782a2ac" /> |
+| <img width="200" alt="home" src="https://github.com/user-attachments/assets/94d7c1bf-a9a5-472a-b108-185290abcca0" /> | <img width="200" alt="serach" src="https://github.com/user-attachments/assets/8ea3bb59-1d97-4406-a281-262685687918" /> | <img width="200" alt="airing-ch" src="https://github.com/user-attachments/assets/b4eaf532-8555-4630-8406-452eca889b9b" /> |
 | Details | Watch | Serach Filters |
-| <img width="200"  alt="details" src="https://github.com/user-attachments/assets/0f297a5d-23ad-4767-8174-ab30075dc106" /> | <img width="200"  alt="watch" src="https://github.com/user-attachments/assets/a01fc2c6-1289-4c1f-9d8e-9b4a18c05661" /> | <img width="200" alt="serach-flt" src="https://github.com/user-attachments/assets/8fc1a543-3224-4526-a27e-58fac665ba4f" /> |
+| <img width="200"  alt="details" src="https://github.com/user-attachments/assets/87973715-e6c2-469f-9637-0a1d4cc5ee34" /> | <img width="200"  alt="watch" src="https://github.com/user-attachments/assets/ad91ea11-f714-4830-b8fc-a73ad2698271" /> | <img width="200" alt="serach-flt" src="https://github.com/user-attachments/assets/8fc1a543-3224-4526-a27e-58fac665ba4f" /> |
 
 
 ## 🚀 Features
