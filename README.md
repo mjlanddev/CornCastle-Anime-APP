@@ -2,6 +2,16 @@
 
 A beautiful and feature-rich Android application that syncs with your AniList account. Track your anime watching progress, explore detailed anime information, and keep your favorites up-to-date!
 
+
+<div align="left">
+   
+[![GitHub release](https://img.shields.io/github/v/release/mjlanddev/CornCastle-Anime-APP)](https://github.com/mjlanddev/CornCastle-Anime-APP/releases/latest)
+[![Stars](https://img.shields.io/github/stars/mjlanddev/CornCastle-Anime-APP)](https://github.com/mjlanddev/CornCastle-Anime-APP/stargazers)
+[![GitHub all releases](https://img.shields.io/github/downloads/mjlanddev/CornCastle-Anime-APP/total)](https://github.com/mjlanddev/CornCastle-Anime-APP/releases/latest)
+
+</div>
+
+
 ## 📸 Screenshots
 
 |  |  |  |
