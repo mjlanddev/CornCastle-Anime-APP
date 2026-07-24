@@ -6,7 +6,7 @@ A beautiful and feature-rich Android application that syncs with your AniList ac
 <div align="left">
    
 [![GitHub release](https://img.shields.io/github/v/release/mjlanddev/CornCastle-Anime-APP)](https://github.com/mjlanddev/CornCastle-Anime-APP/releases/latest)
-[![Stars](https://img.shields.io/github/stars/mjlanddev/CornCastle-Anime-APP)](https://github.com/mjlanddev/CornCastle-Anime-APP/stargazers)
+[![Stars](https://img.shields.io/github/stars/mjlanddev/CornCastle-Anime-APP)](https://github.com/mjlanddev/CornCastle-Anime-APP/)
 [![GitHub all releases](https://img.shields.io/github/downloads/mjlanddev/CornCastle-Anime-APP/total)](https://github.com/mjlanddev/CornCastle-Anime-APP/releases/latest)
 
 </div>
