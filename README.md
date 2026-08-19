@@ -1,4 +1,3 @@
-<div align="center">
   <h1>CornCastle Anime</h1>
   <p><i>A beautiful and feature-rich Android application that syncs with your AniList account. Track your anime watching progress, explore detailed anime information, and keep your favorites up-to-date!</i></p>
 
@@ -48,9 +47,9 @@
       <td align="center"><b>Airing Schedule</b></td>
     </tr>
     <tr>
-      <td><img width="220" alt="Home" src="https://github.com/user-attachments/assets/94d7c1bf-a9a5-472a-b108-185290abcca0" /></td>
-      <td><img width="220" alt="Search" src="https://github.com/user-attachments/assets/8ea3bb59-1d97-4406-a281-262685687918" /></td>
-      <td><img width="220" alt="Airing Schedule" src="https://github.com/user-attachments/assets/b4eaf532-8555-4630-8406-452eca889b9b" /></td>
+      <td><img width="220" alt="Home" src="https://github.com/user-attachments/assets/d177bbe9-1f8d-49e9-96db-8960ce5fabd9" /></td>
+      <td><img width="220" alt="Search" src="https://github.com/user-attachments/assets/b60b8179-f443-454d-bda5-2956a7bb1be1" /></td>
+      <td><img width="220" alt="Airing Schedule" src="https://github.com/user-attachments/assets/d51260a6-9b4b-4694-a132-f12d10fe6c15" /></td>
     </tr>
     <tr>
       <td align="center"><b>Details</b></td>
@@ -58,9 +57,9 @@
       <td align="center"><b>Search Filters</b></td>
     </tr>
     <tr>
-      <td><img width="220" alt="Details" src="https://github.com/user-attachments/assets/87973715-e6c2-469f-9637-0a1d4cc5ee34" /></td>
-      <td><img width="220" alt="Watch" src="https://github.com/user-attachments/assets/ad91ea11-f714-4830-b8fc-a73ad2698271" /></td>
-      <td><img width="220" alt="Search Filters" src="https://github.com/user-attachments/assets/8fc1a543-3224-4526-a27e-58fac665ba4f" /></td>
+      <td><img width="220" alt="Details" src="https://github.com/user-attachments/assets/975ef57c-ede9-41ca-bafb-2b86b3056526"" /></td>
+      <td><img width="220" alt="Watch" src="https://github.com/user-attachments/assets/bdc56d1a-f1d6-45f1-bbd7-dc74d746869c" /></td>
+      <td><img width="220" alt="My Space" src="https://github.com/user-attachments/assets/d735f850-995f-4922-9eea-92b28a6bc208" /></td>
     </tr>
   </table>
 </div>
