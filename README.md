@@ -31,7 +31,6 @@
 <p align="center">
   <a href="https://github.com/mjlanddev/CornCastle-Anime-APP/releases/latest"><img src="https://img.shields.io/github/v/release/mjlanddev/CornCastle-Anime-APP?style=flat-square&color=blue"></a>
   <a href="https://github.com/mjlanddev/CornCastle-Anime-APP/"><img src="https://img.shields.io/github/stars/mjlanddev/CornCastle-Anime-APP?style=flat-square&color=yellow"></a>
-  <a href="https://github.com/mjlanddev/CornCastle-Anime-APP/releases/latest"><img src="https://img.shields.io/github/downloads/mjlanddev/CornCastle-Anime-APP/total?style=flat-square&color=green"></a>
 </p>
 
 <hr>
