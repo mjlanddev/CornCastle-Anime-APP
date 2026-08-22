@@ -1,39 +1,44 @@
-  <h1>CornCastle Anime</h1>
-  <p><i>A beautiful and feature-rich Android application that syncs with your AniList account. Track your anime watching progress, explore detailed anime information, and keep your favorites up-to-date!</i></p>
+<h1>CornCastle Anime</h1>
+<p><i>A beautiful and feature-rich Android application that syncs with your AniList account. Track your anime watching progress, explore detailed anime information, and keep your favorites up-to-date!</i></p>
 
-  <p align="center">
-    <a href="https://kotlinlang.org/">
-      <img src="https://img.shields.io/badge/Kotlin-7F52FF?logo=kotlin&logoColor=white&style=flat-square">
-    </a>
-    <a href="https://developer.android.com/">
-      <img src="https://img.shields.io/badge/Android-3DDC84?logo=android&logoColor=white&style=flat-square">
-    </a>
-    <a href="https://developer.android.com/jetpack/compose">
-      <img src="https://img.shields.io/badge/Jetpack%20Compose-4285F4?logo=jetpackcompose&logoColor=white&style=flat-square">
-    </a>
-    <a href="https://kotlinlang.org/docs/coroutines-overview.html">
-      <img src="https://img.shields.io/badge/Coroutines-7F52FF?logo=kotlin&logoColor=white&style=flat-square">
-    </a>
-    <a href="https://developer.android.com/training/data-storage/room">
-      <img src="https://img.shields.io/badge/Room%20Database-4285F4?logo=sqlite&logoColor=white&style=flat-square">
-    </a>
-    <a href="https://developer.android.com/guide/topics/media/exoplayer">
-      <img src="https://img.shields.io/badge/ExoPlayer%20(Media3)-3DDC84?logo=vlcmediaplayer&logoColor=white&style=flat-square">
-    </a>
-    <a href="https://square.github.io/retrofit/">
-      <img src="https://img.shields.io/badge/Retrofit-104217?logo=square&logoColor=white&style=flat-square">
-    </a>
-    <a href="https://coil-kt.github.io/coil/">
-      <img src="https://img.shields.io/badge/Coil-000000?logo=android&logoColor=white&style=flat-square">
-    </a>
-  </p>
+<p align="center">
+  <a href="https://kotlinlang.org/">
+    <img src="https://img.shields.io/badge/Kotlin-7F52FF?logo=kotlin&logoColor=white&style=flat-square">
+  </a>
+  <a href="https://developer.android.com/">
+    <img src="https://img.shields.io/badge/Android-3DDC84?logo=android&logoColor=white&style=flat-square">
+  </a>
+  <a href="https://developer.android.com/jetpack/compose">
+    <img src="https://img.shields.io/badge/Jetpack%20Compose-4285F4?logo=jetpackcompose&logoColor=white&style=flat-square">
+  </a>
+  <a href="https://kotlinlang.org/docs/coroutines-overview.html">
+    <img src="https://img.shields.io/badge/Coroutines-7F52FF?logo=kotlin&logoColor=white&style=flat-square">
+  </a>
+  <a href="https://developer.android.com/training/data-storage/room">
+    <img src="https://img.shields.io/badge/Room%20Database-4285F4?logo=sqlite&logoColor=white&style=flat-square">
+  </a>
+  <a href="https://developer.android.com/guide/topics/media/exoplayer">
+    <img src="https://img.shields.io/badge/ExoPlayer%20(Media3)-3DDC84?logo=vlcmediaplayer&logoColor=white&style=flat-square">
+  </a>
+  <a href="https://square.github.io/retrofit/">
+    <img src="https://img.shields.io/badge/Retrofit-104217?logo=square&logoColor=white&style=flat-square">
+  </a>
+  <a href="https://coil-kt.github.io/coil/">
+    <img src="https://img.shields.io/badge/Coil-000000?logo=android&logoColor=white&style=flat-square">
+  </a>
+</p>
 
-  <p align="center">
-    <a href="https://github.com/mjlanddev/CornCastle-Anime-APP/releases/latest"><img src="https://img.shields.io/github/v/release/mjlanddev/CornCastle-Anime-APP?style=flat-square&color=blue"></a>
-    <a href="https://github.com/mjlanddev/CornCastle-Anime-APP/"><img src="https://img.shields.io/github/stars/mjlanddev/CornCastle-Anime-APP?style=flat-square&color=yellow"></a>
-    <a href="https://github.com/mjlanddev/CornCastle-Anime-APP/releases/latest"><img src="https://img.shields.io/github/downloads/mjlanddev/CornCastle-Anime-APP/total?style=flat-square&color=green"></a>
-  </p>
-</div>
+<p align="center">
+  <a href="https://github.com/mjlanddev/CornCastle-Anime-APP/releases/latest"><img src="https://img.shields.io/github/v/release/mjlanddev/CornCastle-Anime-APP?style=flat-square&color=blue"></a>
+  <a href="https://github.com/mjlanddev/CornCastle-Anime-APP/"><img src="https://img.shields.io/github/stars/mjlanddev/CornCastle-Anime-APP?style=flat-square&color=yellow"></a>
+  <a href="https://github.com/mjlanddev/CornCastle-Anime-APP/releases/latest"><img src="https://img.shields.io/github/downloads/mjlanddev/CornCastle-Anime-APP/total?style=flat-square&color=green"></a>
+</p>
+
+<hr>
+
+## ⚠️ Project Discontinued
+
+**Due to legal reasons, all releases and updates for this application have been stopped, and existing releases are being removed.** Thank you to everyone who supported this project.
 
 <hr>
 
@@ -74,17 +79,9 @@
 
 ## 📥 Download
 
-The application is distributed as a side-loadable APK. You can download the latest stable version directly from the GitHub releases page.
+> **Note:** As noted above, releases are being discontinued and removed due to legal reasons. The information below is kept for historical reference.
 
-<div align="center">
-  <a href="https://github.com/mjlanddev/CornCastle-Anime-APP/releases/latest">
-    <img src="https://img.shields.io/badge/Download-Latest_APK-blue?style=for-the-badge&logo=android">
-  </a>
-</div>
-
-1. Go to the **[Releases](https://github.com/mjlanddev/CornCastle-Anime-APP/releases/latest)** page.
-2. Download the `.apk` file from the assets section.
-3. Open the downloaded file on your Android device and proceed with the installation.
+The application was previously distributed as a side-loadable APK via the GitHub releases page.
 
 ## 🛠️ Setup & Development
 
@@ -115,24 +112,24 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## ⚠️ Disclaimer
 
-This project is an open-source anime streaming application created for **educational and personal use purposes only**.
+This project was an open-source anime streaming application created for **educational and personal use purposes only**.
 
 ### Content Disclaimer
 * This application does **not host, store, upload, or distribute any copyrighted video content** on its own servers.
 * Anime metadata, titles, descriptions, ratings, and poster images are obtained from third-party sources such as AniList and remain the property of their respective owners.
-* Video content displayed through the application is provided by third-party services via external sources.
-* The developers of this project do not control, own, or operate any external video sources linked through the application.
+* Video content displayed through the application was provided by third-party services via external sources.
+* The developers of this project did not control, own, or operate any external video sources linked through the application.
 
 ### Copyright
-All trademarks, logos, anime titles, artwork, posters, and related intellectual property belong to their respective copyright holders. Their inclusion within this application is for informational and indexing purposes only.
+All trademarks, logos, anime titles, artwork, posters, and related intellectual property belong to their respective copyright holders. Their inclusion within this application was for informational and indexing purposes only.
 
 ### User Responsibility
-Users are solely responsible for how they use this software and for complying with applicable copyright laws and regulations in their jurisdiction.
+Users are solely responsible for how they used this software and for complying with applicable copyright laws and regulations in their jurisdiction.
 
 The developers, contributors, and maintainers of this project shall not be held liable for any misuse of the software, copyright infringement, or other unlawful activities carried out by users.
 
 ### DMCA / Content Removal
-If you are a copyright owner and believe that any content accessible through this application infringes your rights, please contact the relevant content hosting provider directly. Since this application does not host the video content, removal requests should be directed to the source hosting the material.
+If you are a copyright owner and believe that any content previously accessible through this application infringed your rights, please contact the relevant content hosting provider directly. Since this application did not host the video content, removal requests should be directed to the source hosting the material.
 
 ### No Warranty
-This software is provided "AS IS", without warranty of any kind, express or implied. The developers assume no responsibility for any damages, legal issues, or losses arising from the use of this project.
+This software was provided "AS IS", without warranty of any kind, express or implied. The developers assume no responsibility for any damages, legal issues, or losses arising from the use of this project.
